@@ -151,14 +151,18 @@ Al ejecutar `get_trm.bat`, el sistema:
 
 ## Ejecucion manual si ya se tiene el entorno virtual creado en Windows
 
+```cmd
 .\venv\Scripts\activate
 pip install -r requirements.txt
 python main.py --ruta "C:\Users\JUANK\Desktop\TRM_PYTHON\PWC1"
+```
 
 ## Crear y activar un entorno virtual de Python en Mac
 
+```cmd
 python3 -m venv venv
 source venv/bin/activate
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 python main.py --ruta "/Users/bitsamericas/Downloads/PWC1"
+```
