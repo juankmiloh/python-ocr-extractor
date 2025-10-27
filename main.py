@@ -11,11 +11,13 @@ import os
 import argparse
 from pathlib import Path
 import sys
+import platform
 
 # Configurar ruta a tesseract
-base_dir = os.path.dirname(os.path.abspath(__file__))
-pytesseract.pytesseract.tesseract_cmd = os.path.join(base_dir, "Tesseract-OCR", "tesseract.exe")
-os.environ["TESSDATA_PREFIX"] = os.path.join(base_dir, "Tesseract-OCR", "tessdata")
+if platform.system() == "Windows":
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    pytesseract.pytesseract.tesseract_cmd = os.path.join(base_dir, "Tesseract-OCR", "tesseract.exe")
+    os.environ["TESSDATA_PREFIX"] = os.path.join(base_dir, "Tesseract-OCR", "tessdata")
 
 def normalize_number(s: str) -> str:
     last = max(s.rfind(','), s.rfind('.'))
@@ -86,7 +88,10 @@ def main():
         print(f"📂 Procesando archivo: {pdf_path}")
         conversion_start = time.time()
         try:
-            pages = convert_from_path(pdf_path, poppler_path=os.path.join(base_dir, "poppler", "Library", "bin"))
+            if platform.system() == "Windows":
+                pages = convert_from_path(pdf_path, poppler_path=os.path.join(base_dir, "poppler", "Library", "bin"))
+            else:
+                pages = convert_from_path(pdf_path)
         except Exception as e:
             print(f"❌ Error al convertir PDF: {e}")
             continue

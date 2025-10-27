@@ -1,4 +1,3 @@
-
 # Proyecto OCR TRM
 
 Este proyecto permite extraer automáticamente el número de factura y la tasa de cambio (TRM) desde archivos PDF utilizando OCR, sin necesidad de tener Python instalado en el sistema.
@@ -123,6 +122,7 @@ pages = convert_from_path(pdf_path, poppler_path=os.path.join(base_dir, "poppler
 ---
 
 ### 9. Script de ejecución automática (`get_trm.bat`)
+
 ```cmd
 .\get_trm.bat
 ```
@@ -149,7 +149,16 @@ Al ejecutar `get_trm.bat`, el sistema:
 
 ---
 
-## EJECUCION MANUAL SI YA SE TIENE EL ENTORNO VIRTUAL CREADO
+## Ejecucion manual si ya se tiene el entorno virtual creado en Windows
+
 .\venv\Scripts\activate
 pip install -r requirements.txt
-python main.py --ruta  "C:\Users\JUANK\Desktop\TRM_PYTHON\PWC1"
+python main.py --ruta "C:\Users\JUANK\Desktop\TRM_PYTHON\PWC1"
+
+## Crear y activar un entorno virtual de Python en Mac
+
+python3 -m venv venv
+source venv/bin/activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+python main.py --ruta "/Users/bitsamericas/Downloads/PWC1"
